@@ -9,6 +9,7 @@
 #include <Arduino.h>
 
 #include "log_service.h"
+#include "DHT_service.h"
 
 
 /* ==================================================
@@ -20,20 +21,17 @@
 void setup() 
 {
   Log_init();
-  LOG_I("Init log service");
+  DHT_init();
 }
 
 
 void loop() 
 {
-  static uint32_t intv = millis();
-  if(millis() - intv < 5000)
-  {
-    LOG_U("interval < 5000 milliseconds");
-    return;
-  }
+  DHT_read();
 
-  LOG_E("interval > 5000 ms");
-  LOG_I("reset interval");
+  static uint32_t intv = millis();
+  if(millis() - intv < 2000) {return;}
+
+  DHT_print();
   intv = millis();
 }

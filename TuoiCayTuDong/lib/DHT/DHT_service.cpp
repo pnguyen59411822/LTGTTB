@@ -100,7 +100,7 @@ bool DHT_read()
 }
 
 
-float DHT_get_temp(bool celcius=true)
+float DHT_get_temp(bool celcius)
 {
     return celcius ? tempC : tempF;
 }
@@ -112,13 +112,13 @@ float DHT_get_humidity()
 }
 
 
-float DHT_get_heatIndex(bool celcius=true)
+float DHT_get_heatIndex(bool celcius)
 {
     return celcius ? heatIndexC : heatIndexF;
 }
 
 
-void DHT_print(bool update=false)
+void DHT_print(bool update)
 {
     if(update){
         LOG_U("[DHT] Humidity: %3.2f% | Temperature: %3.2f°C  %3.2f°F | Head index: %3.2f°C  %3.2f°F", humidity, tempC, tempF, heatIndexC, heatIndexF);
