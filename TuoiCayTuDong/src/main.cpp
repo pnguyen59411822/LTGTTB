@@ -38,6 +38,6 @@ void loop()
   static uint32_t intv = millis();
   if(millis() - intv < 2000) {return;}
 
-  DHT_print();
+  BMP280_print();
   intv = millis();
 }

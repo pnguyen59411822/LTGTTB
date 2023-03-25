@@ -44,14 +44,12 @@
 
 
 #ifdef BMP280_I2C
-
 Adafruit_BMP280 bmp;
 
 #else
-
-
-
 #endif
+
+float pressure_seaLevel = 1013.25;
 
 
 /* ==================================================
@@ -106,3 +104,60 @@ void BMP280_init()
     LOG_I("[BMP280] end initing\n");
 }
 
+
+void BMP280_read()
+{
+    Serial.print(F("Temperature = "));
+    Serial.print(bmp.readTemperature());
+    Serial.println(" *C");
+
+    Serial.print(F("Pressure = "));
+    Serial.print(bmp.readPressure());
+    Serial.println(" Pa");
+
+    Serial.print(F("Approx altitude = "));
+    Serial.print(bmp.readAltitude(1013.25)); /* Adjusted to local forecast! */
+    Serial.println(" m");
+
+    Serial.println();
+    delay(2000);
+}
+
+
+float BMP280_get_tempC()
+{
+    return bmp.readTemperature();
+}
+
+
+float BMP280_get_pressure()
+{
+    return bmp.readPressure();
+}
+
+
+float BMP280_get_altitude()
+{
+    return bmp.readAltitude(pressure_seaLevel);
+}
+
+
+void BMP280_set_seaLevelPressure(float pressure)
+{
+    pressure_seaLevel = pressure;
+}
+
+
+void BMP280_print(bool update)
+{
+    float tempC = bmp.readTemperature();
+    float press = bmp.readPressure();
+    float alt   = bmp.readAltitude(pressure_seaLevel);
+
+    if(update){
+        LOG_U("[BMP280] temp: %3.2f | pressure: %3.2f | alt: %3.2f", tempC, press, alt);
+        return;
+    }
+    
+    LOG_I("[BMP280] temp: %3.2f | pressure: %3.2f | alt: %3.2f", tempC, press, alt);
+}
