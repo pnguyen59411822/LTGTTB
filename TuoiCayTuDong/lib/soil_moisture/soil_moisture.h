@@ -37,7 +37,12 @@
 ** =============================================== */
 
 
-void SM_init();
+void  SM_init();
+
+float SM_get_raw();
+float SM_get_percent();
+
+void SM_print(bool update=false);
 
 
 /* ==================================================

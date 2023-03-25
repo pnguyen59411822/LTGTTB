@@ -13,6 +13,7 @@
 #include "SPI_service.h"
 #include "DHT_service.h"
 #include "BMP280.h"
+#include "soil_moisture.h"
 
 
 /* ==================================================
@@ -28,6 +29,7 @@ void setup()
   I2C_scan();
   DHT_init();
   BMP280_init();
+  SM_init();
 }
 
 
@@ -40,6 +42,7 @@ void loop()
 
   DHT_print();
   BMP280_print();
+  SM_print();
 
   LOG_PRINTF("\n");
   intv = millis();

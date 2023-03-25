@@ -14,6 +14,10 @@
 
 
 #define SM_PIN              33
+#define SM_MIN              0
+#define SM_MAX              100
+
+#define ESP_RESOLUTION      4096
 
 
 /* ==================================================
@@ -40,7 +44,9 @@
 ** =============================================== */
 
 
-//
+int raw_min = 0;
+int raw_max = ESP_RESOLUTION;
+
 
 
 /* ==================================================
@@ -72,3 +78,29 @@ void SM_init()
     pinMode(SM_PIN, INPUT);
 }
 
+
+float SM_get_raw()
+{
+    return analogRead(SM_PIN);
+}
+
+
+float SM_get_percent()
+{
+    float  raw = (float)analogRead(SM_PIN);
+    return raw / (raw_max-raw_min) * (SM_MAX-SM_MIN) + SM_MIN;
+}
+
+
+void SM_print(bool update)
+{
+    float raw = SM_get_raw();
+    float per = SM_get_percent();
+
+    if(update){
+        LOG_U("[Soil Moisture] raw: %7.2f | percent: %7.2f\n", raw, per);
+        return;
+    }
+
+    LOG_I("[Soil Moisture] raw: %7.2f | percent: %7.2f\n", raw, per);
+}
