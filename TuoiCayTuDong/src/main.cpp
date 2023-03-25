@@ -10,6 +10,7 @@
 
 #include "log_service.h"
 #include "I2C_service.h"
+#include "SPI_service.h"
 #include "DHT_service.h"
 
 
