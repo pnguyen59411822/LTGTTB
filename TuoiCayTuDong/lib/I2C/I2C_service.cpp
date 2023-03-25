@@ -81,8 +81,7 @@ void I2C_init()
 
 void I2C_scan()
 {
-    LOG_PRINTF("\n\n");
-    LOG_I("[I2C] scanning ...");
+    LOG_I("\n[I2C] scanning ...");
 
     uint8_t numDev = 0;
 
@@ -109,7 +108,6 @@ void I2C_scan()
         return;
     }
 
-    LOG_I("[I2C] end scanning");
-    LOG_PRINTF("\n\n");
+    LOG_I("[I2C] end scanning\n");
 }
 
