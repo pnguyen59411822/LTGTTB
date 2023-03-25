@@ -96,3 +96,23 @@ bool DHT_read()
     heatIndexF  = dht.computeHeatIndex(f, h);
     heatIndexC  = dht.computeHeatIndex(t, h, false);
 }
+
+
+float DHT_get_temp(bool celcius=true)
+{
+    return celcius ? tempC : tempF;
+}
+
+
+float DHT_get_humidity()
+{
+    return humidity;
+}
+
+
+float DHT_get_heatIndex(bool celcius=true)
+{
+    return celcius ? heatIndexC : heatIndexF;
+}
+
+

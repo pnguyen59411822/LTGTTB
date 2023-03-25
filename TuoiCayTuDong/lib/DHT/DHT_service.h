@@ -36,8 +36,11 @@
 
 
 void DHT_init();
-
 bool DHT_read();
+
+float DHT_get_temp(bool celcius=true);
+float DHT_get_humidity();
+float DHT_get_heatIndex(bool celcius=true);
 
 
 /* ==================================================
