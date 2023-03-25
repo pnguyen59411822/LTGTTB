@@ -92,6 +92,18 @@ float SM_get_percent()
 }
 
 
+void SM_set_rawMin(int raw)
+{
+    raw_min = raw;
+}
+
+
+void SM_set_rawMax(int raw)
+{
+    raw_max = raw;
+}
+
+
 void SM_print(bool update)
 {
     float raw = SM_get_raw();
