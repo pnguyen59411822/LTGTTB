@@ -37,6 +37,8 @@
 
 void DHT_init();
 
+bool DHT_read();
+
 
 /* ==================================================
 ** Extern variables
