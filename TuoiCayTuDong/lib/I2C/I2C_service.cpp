@@ -92,19 +92,20 @@ void I2C_scan()
         uint8_t err = Wire.endTransmission();
 
         if(err == 0){
-            LOG_I("[I2C] found device at: %02X", addr);
+            LOG_I("[I2C] found device at: %#x", addr);
             numDev ++;
             continue;
         }
 
         if(err == 4){
-            LOG_E("[I2C] unknow error at: %02X", addr);
+            LOG_E("[I2C] unknow error at: %#x", addr);
             continue;
         }
     }
 
     if(numDev == 0){
         LOG_E("[I2C] No device found");
+        LOG_PRINTF("\n\n");
         return;
     }
 

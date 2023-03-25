@@ -9,6 +9,7 @@
 #include <Arduino.h>
 
 #include "log_service.h"
+#include "I2C_service.h"
 #include "DHT_service.h"
 
 
@@ -21,7 +22,10 @@
 void setup() 
 {
   Log_init();
+  I2C_init();
+  I2C_scan();
   DHT_init();
+  
 }
 
 
