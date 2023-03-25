@@ -49,7 +49,8 @@ Adafruit_BMP280 bmp;
 #else
 #endif
 
-float pressure_seaLevel = 1013.25;
+// Pressure at Bien Hoa, Vietnam
+float pressure_seaLevel = 1010.5;
 
 
 /* ==================================================
@@ -78,7 +79,8 @@ float pressure_seaLevel = 1013.25;
 
 void BMP280_init()
 {
-    LOG_I("\n[BMP280] start initing");
+    LOG_PRINTF("\n");
+    LOG_I("[BMP280] start initing");
 
     uint32_t status = bmp.begin(BMP280_ADDRESS_ALT, BMP280_CHIPID);
 
@@ -105,25 +107,6 @@ void BMP280_init()
 }
 
 
-void BMP280_read()
-{
-    Serial.print(F("Temperature = "));
-    Serial.print(bmp.readTemperature());
-    Serial.println(" *C");
-
-    Serial.print(F("Pressure = "));
-    Serial.print(bmp.readPressure());
-    Serial.println(" Pa");
-
-    Serial.print(F("Approx altitude = "));
-    Serial.print(bmp.readAltitude(1013.25)); /* Adjusted to local forecast! */
-    Serial.println(" m");
-
-    Serial.println();
-    delay(2000);
-}
-
-
 float BMP280_get_tempC()
 {
     return bmp.readTemperature();
@@ -142,9 +125,9 @@ float BMP280_get_altitude()
 }
 
 
-void BMP280_set_seaLevelPressure(float pressure)
+void BMP280_set_seaLevelPressure(float hPa)
 {
-    pressure_seaLevel = pressure;
+    pressure_seaLevel = hPa;
 }
 
 
@@ -155,9 +138,9 @@ void BMP280_print(bool update)
     float alt   = bmp.readAltitude(pressure_seaLevel);
 
     if(update){
-        LOG_U("[BMP280] temp: %3.2f | pressure: %3.2f | alt: %3.2f", tempC, press, alt);
+        LOG_U("[BMP280] temp: %3.2f ºC | pressure: %3.2f Pa | alt: %3.2f m", tempC, press, alt);
         return;
     }
     
-    LOG_I("[BMP280] temp: %3.2f | pressure: %3.2f | alt: %3.2f", tempC, press, alt);
+    LOG_I("[BMP280] temp: %3.2f ºC | pressure: %3.2f Pa | alt: %3.2f m", tempC, press, alt);
 }

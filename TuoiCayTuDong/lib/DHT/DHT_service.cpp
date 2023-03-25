@@ -75,7 +75,8 @@ float heatIndexC, heatIndexF;
 
 void DHT_init()
 {
-    LOG_I("\n[DHT] start initing");
+    LOG_PRINTF("\n");
+    LOG_I("[DHT] start initing");
     dht.begin();
     LOG_I("[DHT] end initing\n");
 }
