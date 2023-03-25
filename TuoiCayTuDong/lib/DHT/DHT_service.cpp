@@ -8,8 +8,6 @@
 
 #include "DHT.h"
 
-#include "log_service.h"
-
 
 /* ==================================================
 ** Macro definition

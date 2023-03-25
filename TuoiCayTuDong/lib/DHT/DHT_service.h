@@ -10,6 +10,8 @@
 
 #include <Arduino.h>
 
+#include "log_service.h"
+
 
 /* ==================================================
 ** Macro definition
