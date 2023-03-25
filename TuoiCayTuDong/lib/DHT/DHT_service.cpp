@@ -97,6 +97,8 @@ bool DHT_read()
 
     heatIndexF  = dht.computeHeatIndex(f, h);
     heatIndexC  = dht.computeHeatIndex(t, h, false);
+
+    return true;
 }
 
 
