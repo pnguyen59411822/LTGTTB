@@ -42,6 +42,8 @@ float DHT_get_temp(bool celcius=true);
 float DHT_get_humidity();
 float DHT_get_heatIndex(bool celcius=true);
 
+void DHT_print(bool update=false);
+
 
 /* ==================================================
 ** Extern variables

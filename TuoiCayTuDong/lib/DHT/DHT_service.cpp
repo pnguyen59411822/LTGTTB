@@ -8,6 +8,8 @@
 
 #include "DHT.h"
 
+#include "log_service.h"
+
 
 /* ==================================================
 ** Macro definition
@@ -116,3 +118,12 @@ float DHT_get_heatIndex(bool celcius=true)
 }
 
 
+void DHT_print(bool update=false)
+{
+    if(update){
+        LOG_U("[DHT] Humidity: %3.2f% | Temperature: %3.2f°C  %3.2f°F | Head index: %3.2f°C  %3.2f°F", humidity, tempC, tempF, heatIndexC, heatIndexF);
+        return;
+    }
+
+    LOG_I("[DHT] Humidity: %3.2f% | Temperature: %3.2f°C  %.2f°F | Head index: %3.2f°C  %3.2f°F", humidity, tempC, tempF, heatIndexC, heatIndexF);
+}
