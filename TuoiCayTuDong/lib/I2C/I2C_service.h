@@ -9,6 +9,7 @@
 
 
 #include <Arduino.h>
+#include <Wire.h>
 
 #include "log_service.h"
 
@@ -19,7 +20,12 @@
 ** =============================================== */
 
 
-//
+// #define I2C_ENABLE_CUSTOM_PINS
+
+#ifdef I2C_ENABLE_CUSTOM_PINS
+    #define I2C_SDA 21
+    #define I2C_SCL 22
+#endif
 
 
 /* ==================================================
@@ -37,7 +43,8 @@
 ** =============================================== */
 
 
-//
+void I2C_init();
+void I2C_scan();
 
 
 /* ==================================================
