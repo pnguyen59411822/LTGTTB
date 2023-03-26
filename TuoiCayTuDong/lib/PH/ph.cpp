@@ -15,7 +15,11 @@
 ** =============================================== */
 
 
+#define ESP_RESOLUTION      4095
+
 #define PH_PIN              35
+#define PH_VCC              5000
+#define PH_VOLT             (analogRead(PH_PIN) / ESP_RESOLUTION * PH_VCC)
 
 
 /* ==================================================
@@ -44,7 +48,7 @@
 
 DFRobot_PH ph;
 
-float volt, ph_val,temp = 25;
+float ph_val,temp = 25;
 
 
 /* ==================================================
