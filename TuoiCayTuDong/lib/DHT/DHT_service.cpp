@@ -18,7 +18,7 @@
 #define DHT_PIN             32
 #define DHT_TYPE            DHT11
 
-#define DHT_TIME_REINIT     5000
+#define DHT_TIME_REINIT     10000
 
 
 /* ==================================================
@@ -98,7 +98,8 @@ void DHT_reinit()
     if(flg_inited)                        {return;}
     if(millis() - intv < DHT_TIME_REINIT) {return;}
 
-    DHT_init();
+    LOG_I("[DHT] re-initalize");
+    dht.begin();
     intv = millis();
 }
 

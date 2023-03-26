@@ -18,7 +18,7 @@
 #define BMP280_I2C
 // #define BMP280_SPI
 
-#define BMP280_TIME_REINIT      5000
+#define BMP280_TIME_REINIT      10000
 
 
 /* ==================================================
@@ -86,11 +86,8 @@ void BMP280_init()
     LOG_PRINTF("\n");
     LOG_I("[BMP280] start initing");
 
-    uint32_t status = bmp.begin(BMP280_ADDRESS_ALT, BMP280_CHIPID);
-
-    if(!status){
-        status = bmp.begin(BMP280_ADDRESS, BMP280_CHIPID);
-    }
+    uint32_t     status = bmp.begin(BMP280_ADDRESS_ALT, BMP280_CHIPID);
+    if(!status) {status = bmp.begin(BMP280_ADDRESS, BMP280_CHIPID);}
 
     if (!status) 
     {
@@ -103,7 +100,10 @@ void BMP280_init()
         LOG_PRINTF("\t\t ID of 0x61 represents a BME 680.\n");
     }
 
-    if(status) {flg_inited = true;}
+    if(status) {
+        flg_inited = true;
+        LOG_I("[BMP280] inited");
+    }
 
     /* Default settings from datasheet. */
     bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,     /* Operating Mode. */
@@ -123,7 +123,11 @@ void BMP280_reinit()
     if(flg_inited)                           {return;}
     if(millis() - intv < BMP280_TIME_REINIT) {return;}
 
-    BMP280_init();
+    LOG_I("[BMP280] re-initalize");
+
+    uint32_t     status = bmp.begin(BMP280_ADDRESS_ALT, BMP280_CHIPID);
+    if(!status) {status = bmp.begin(BMP280_ADDRESS, BMP280_CHIPID);}
+    if(status)  {flg_inited = true;}
 
     intv = millis();
 }

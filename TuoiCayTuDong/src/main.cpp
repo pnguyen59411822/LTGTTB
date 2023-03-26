@@ -46,6 +46,7 @@ void loop()
   static uint32_t intv = millis();
   if(millis() - intv < 2000) {return;}
 
+  LOG_PRINTF("\n");
   DHT_print();
   BMP280_print();
   SM_print();

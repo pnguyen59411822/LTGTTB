@@ -110,9 +110,9 @@ void SM_print(bool update)
     float per = SM_get_percent();
 
     if(update){
-        LOG_U("[Soil Moisture] raw: %7.2f | percent: %7.2f\n", raw, per);
+        LOG_U("[Soil Moisture] raw: %7.2f | percent: %7.2f", raw, per);
         return;
     }
 
-    LOG_I("[Soil Moisture] raw: %7.2f | percent: %7.2f\n", raw, per);
+    LOG_I("[Soil Moisture] raw: %7.2f | percent: %7.2f", raw, per);
 }
