@@ -92,6 +92,8 @@ void PH_upd()
 {
     static uint32_t intv = millis();
 
+    ph.calibration(volt, tempC);
+
     if(millis() - intv < PH_TIME_UPDATE) {return;}
     intv = millis();
 
