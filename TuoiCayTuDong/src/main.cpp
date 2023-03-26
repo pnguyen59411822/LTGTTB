@@ -31,12 +31,14 @@ void setup()
   DHT_init();
   BMP280_init();
   SM_init();
+  PH_init();
 }
 
 
 void loop() 
 {
   DHT_read();
+  PH_upd();
 
   static uint32_t intv = millis();
   if(millis() - intv < 2000) {return;}

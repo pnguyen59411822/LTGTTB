@@ -101,3 +101,14 @@ void PH_upd()
     tempC  = 25;
     ph_val = ph.readPH(volt, tempC);
 }
+
+
+void PH_print(bool update)
+{
+    if(update){
+        LOG_U("[PH] val: %2.2f", ph_val);
+        return;
+    }
+    
+    LOG_I("[PH] val: %2.2f", ph_val);
+}

@@ -44,6 +44,8 @@ float PH_get_val();
 
 void PH_upd();
 
+void PH_print(bool update=false);
+
 
 /* ==================================================
 ** Extern variables
