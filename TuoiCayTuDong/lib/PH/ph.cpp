@@ -19,7 +19,8 @@
 
 #define PH_PIN              35
 #define PH_VCC              5000
-#define PH_VOLT             (analogRead(PH_PIN) / ESP_RESOLUTION * PH_VCC)
+
+#define PH_TIME_UPDATE      1000
 
 
 /* ==================================================
@@ -48,7 +49,7 @@
 
 DFRobot_PH ph;
 
-float ph_val,temp = 25;
+float volt, ph_val,tempC = 25;
 
 
 /* ==================================================
@@ -80,3 +81,21 @@ void PH_init()
     ph.begin();
 }
 
+
+float PH_get_val()
+{
+    return ph_val;
+}
+
+
+void PH_upd()
+{
+    static uint32_t intv = millis();
+
+    if(millis() - intv < PH_TIME_UPDATE) {return;}
+    intv = millis();
+
+    volt   = (float)analogRead(PH_PIN) / ESP_RESOLUTION * PH_VCC;
+    tempC  = 25;
+    ph_val = ph.readPH(volt, tempC);
+}

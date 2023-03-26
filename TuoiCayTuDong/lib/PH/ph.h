@@ -40,6 +40,10 @@
 
 void PH_init();
 
+float PH_get_val();
+
+void PH_upd();
+
 
 /* ==================================================
 ** Extern variables
