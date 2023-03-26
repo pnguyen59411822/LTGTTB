@@ -37,6 +37,8 @@ void setup()
 
 void loop() 
 {
+  DHT_reinit();
+
   DHT_read();
   PH_upd();
 

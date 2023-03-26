@@ -38,6 +38,7 @@
 
 
 void DHT_init();
+void DHT_reinit();
 bool DHT_read();
 
 float DHT_get_temp(bool celcius=true);

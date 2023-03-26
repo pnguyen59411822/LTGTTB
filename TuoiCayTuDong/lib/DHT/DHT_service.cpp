@@ -18,6 +18,8 @@
 #define DHT_PIN             32
 #define DHT_TYPE            DHT11
 
+#define DHT_TIME_REINIT     5000
+
 
 /* ==================================================
 ** Type definition
@@ -45,8 +47,13 @@
 
 DHT dht(DHT_PIN, DHT_TYPE);
 
-float tempC, tempF, humidity;
-float heatIndexC, heatIndexF;
+float tempC      = nan(NULL);
+float tempF      = nan(NULL);
+float humidity   = nan(NULL);
+float heatIndexC = nan(NULL); 
+float heatIndexF = nan(NULL);
+
+bool flg_inited = false;
 
 
 /* ==================================================
@@ -77,8 +84,21 @@ void DHT_init()
 {
     LOG_PRINTF("\n");
     LOG_I("[DHT] start initing");
+
     dht.begin();
+
     LOG_I("[DHT] end initing\n");
+}
+
+
+void DHT_reinit()
+{
+    static uint32_t intv = millis();
+
+    if(flg_inited)                        {return;}
+    if(millis() - intv < DHT_TIME_REINIT) {return;}
+
+    DHT_init();
 }
 
 
@@ -91,6 +111,8 @@ bool DHT_read()
     if (isnan(h) || isnan(t) || isnan(f)) {
         return false;
     }
+
+    if(!flg_inited) {flg_inited = true;}
 
     tempC       = t;
     tempF       = f;
