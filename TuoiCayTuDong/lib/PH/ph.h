@@ -9,6 +9,7 @@
 
 
 #include <Arduino.h>
+#include <EEPROM.h>
 
 #include "log_service.h"
 

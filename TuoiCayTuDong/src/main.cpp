@@ -14,6 +14,7 @@
 #include "DHT_service.h"
 #include "BMP280.h"
 #include "soil_moisture.h"
+#include "ph.h"
 
 
 /* ==================================================
