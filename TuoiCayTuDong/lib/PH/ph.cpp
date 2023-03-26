@@ -50,9 +50,9 @@
 ** =============================================== */
 
 
-DFRobot_PH ph;
+static DFRobot_PH ph;
 
-float volt, ph_val,tempC = 25;
+static float volt, ph_val,tempC = 25;
 
 
 /* ==================================================

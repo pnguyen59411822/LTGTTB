@@ -46,15 +46,15 @@
 
 
 #ifdef BMP280_I2C
-Adafruit_BMP280 bmp;
+static Adafruit_BMP280 bmp;
 
 #else
 #endif
 
 // Pressure at Bien Hoa, Vietnam
-float pressure_seaLevel = 1010.5;
+static float pressure_seaLevel = 1010.5;
 
-bool flg_inited = false;
+static bool flg_inited = false;
 
 
 /* ==================================================

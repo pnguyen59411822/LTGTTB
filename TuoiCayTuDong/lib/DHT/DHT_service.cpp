@@ -45,15 +45,15 @@
 ** =============================================== */
 
 
-DHT dht(DHT_PIN, DHT_TYPE);
+static DHT dht(DHT_PIN, DHT_TYPE);
 
-float tempC      = nan(NULL);
-float tempF      = nan(NULL);
-float humidity   = nan(NULL);
-float heatIndexC = nan(NULL); 
-float heatIndexF = nan(NULL);
+static float tempC      = nan(NULL);
+static float tempF      = nan(NULL);
+static float humidity   = nan(NULL);
+static float heatIndexC = nan(NULL); 
+static float heatIndexF = nan(NULL);
 
-bool flg_inited = false;
+static bool flg_inited = false;
 
 
 /* ==================================================
