@@ -124,9 +124,9 @@ void PH_upd()
 void PH_print(bool update)
 {
     if(update){
-        LOG_U("[PH] val: %2.2f", ph_val);
+        LOG_U("[PH] val: %2.2f | temp: %3.2f ºC", ph_val, tempC);
         return;
     }
     
-    LOG_I("[PH] val: %2.2f", ph_val);
+    LOG_I("[PH] val: %2.2f | temp: %3.2f ºC", ph_val, tempC);
 }
