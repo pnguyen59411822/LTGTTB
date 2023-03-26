@@ -8,6 +8,8 @@
 
 #include "DFRobot_PH.h"
 
+#include "DHT_service.h"
+
 
 /* ==================================================
 ** Macro definition
@@ -69,6 +71,13 @@ void upd_tempC();
 
 void upd_tempC()
 {
+    if(!isnan(DHT_get_temp())) 
+    {
+        tempC = DHT_get_temp();
+        return;
+    }
+
+    
     tempC = 25;
 }
 
