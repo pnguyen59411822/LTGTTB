@@ -124,6 +124,8 @@ void BMP280_reinit()
     if(millis() - intv < BMP280_TIME_REINIT) {return;}
 
     BMP280_init();
+
+    intv = millis();
 }
 
 

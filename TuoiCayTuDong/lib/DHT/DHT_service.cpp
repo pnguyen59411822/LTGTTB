@@ -99,6 +99,7 @@ void DHT_reinit()
     if(millis() - intv < DHT_TIME_REINIT) {return;}
 
     DHT_init();
+    intv = millis();
 }
 
 
