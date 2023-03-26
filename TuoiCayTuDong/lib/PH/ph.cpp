@@ -58,7 +58,7 @@ float volt, ph_val,tempC = 25;
 ** =============================================== */
 
 
-//
+void upd_tempC();
 
 
 /* ==================================================
@@ -67,7 +67,10 @@ float volt, ph_val,tempC = 25;
 ** =============================================== */
 
 
-//
+void upd_tempC()
+{
+    tempC = 25;
+}
 
 
 /* ==================================================
@@ -97,8 +100,8 @@ void PH_upd()
     if(millis() - intv < PH_TIME_UPDATE) {return;}
     intv = millis();
 
+    upd_tempC();
     volt   = (float)analogRead(PH_PIN) / ESP_RESOLUTION * PH_VCC;
-    tempC  = 25;
     ph_val = ph.readPH(volt, tempC);
 }
 
