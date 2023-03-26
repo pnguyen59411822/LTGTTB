@@ -9,6 +9,7 @@
 #include "DFRobot_PH.h"
 
 #include "DHT_service.h"
+#include "BMP280.h"
 
 
 /* ==================================================
@@ -77,7 +78,12 @@ void upd_tempC()
         return;
     }
 
-    
+    if(!isnan(BMP280_get_tempC()))
+    {
+        tempC = BMP280_get_tempC();
+        return;
+    }
+
     tempC = 25;
 }
 
