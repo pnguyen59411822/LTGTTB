@@ -18,6 +18,8 @@
 #define BMP280_I2C
 // #define BMP280_SPI
 
+#define BMP280_TIME_REINIT      5000
+
 
 /* ==================================================
 ** Type definition
@@ -52,6 +54,8 @@ Adafruit_BMP280 bmp;
 // Pressure at Bien Hoa, Vietnam
 float pressure_seaLevel = 1010.5;
 
+bool flg_inited = false;
+
 
 /* ==================================================
 ** Global function declaration
@@ -84,6 +88,10 @@ void BMP280_init()
 
     uint32_t status = bmp.begin(BMP280_ADDRESS_ALT, BMP280_CHIPID);
 
+    if(!status){
+        status = bmp.begin(BMP280_ADDRESS, BMP280_CHIPID);
+    }
+
     if (!status) 
     {
         LOG_E("[BMP280] Could not find a valid BMP280");
@@ -95,6 +103,8 @@ void BMP280_init()
         LOG_PRINTF("\t\t ID of 0x61 represents a BME 680.\n");
     }
 
+    if(status) {flg_inited = true;}
+
     /* Default settings from datasheet. */
     bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,     /* Operating Mode. */
                     Adafruit_BMP280::SAMPLING_X2,     /* Temp. oversampling */
@@ -102,8 +112,18 @@ void BMP280_init()
                     Adafruit_BMP280::FILTER_X16,      /* Filtering. */
                     Adafruit_BMP280::STANDBY_MS_500); /* Standby time. */
 
-
     LOG_I("[BMP280] end initing\n");
+}
+
+
+void BMP280_reinit()
+{
+    static uint32_t intv = millis();
+
+    if(flg_inited)                           {return;}
+    if(millis() - intv < BMP280_TIME_REINIT) {return;}
+
+    BMP280_init();
 }
 
 

@@ -38,6 +38,7 @@
 
 
 void BMP280_init();
+void BMP280_reinit();
 
 float BMP280_get_tempC();
 float BMP280_get_pressure();
