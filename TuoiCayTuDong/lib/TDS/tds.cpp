@@ -199,9 +199,9 @@ void TDS_read()
 }
 
 
-float TDS_get_value()
+float TDS_get_value(uint8_t index)
 {
-    return tds_value;
+    return tds_value[index];
 }
 
 
