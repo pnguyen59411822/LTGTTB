@@ -51,8 +51,8 @@
 static uint16_t samplePoints[TDS_NUM_SAMPLE_POINTS];
 static uint8_t  samplePoints_ind = 0;
 
-static float tds_volt;
-static float tds_value;
+static float tds_volt  = nan(NULL);
+static float tds_value = nan(NULL);
 
 
 /* ==================================================
@@ -129,5 +129,11 @@ void TDS_init()
 void TDS_read()
 {
     upd_samplePoints();
+    upd_value();
+}
 
+
+float TDS_get_value()
+{
+    return tds_value;
 }

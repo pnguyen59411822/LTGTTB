@@ -40,6 +40,8 @@
 void TDS_init();
 void TDS_read();
 
+float TDS_get_value();
+
 
 /* ==================================================
 ** Extern variables
