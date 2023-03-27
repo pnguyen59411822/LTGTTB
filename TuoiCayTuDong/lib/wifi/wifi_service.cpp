@@ -16,6 +16,8 @@
 #define WIFI_DEFAULT_SSID           "My SSID"
 #define WIFI_DEFAULT_PASS           ""
 
+#define WIFI_NUM_TRY                3
+
 #define WIFI_LENGTH_PASS_MIN        8
 
 #define WIFI_TIME_CONNECT           5000
@@ -73,7 +75,7 @@ static void connect_default()
     WiFi.mode(WIFI_STA);
     WiFi.begin(WIFI_DEFAULT_SSID, WIFI_DEFAULT_PASS);
 
-    for(uint8_t i=0; i<3; ++i)
+    for(uint8_t i=0; i<WIFI_NUM_TRY; ++i)
     {
         uint32_t timePoint = millis();
         while((millis()-timePoint) % WIFI_TIME_CONNECT*2 < WIFI_TIME_CONNECT) {}
