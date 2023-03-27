@@ -157,7 +157,7 @@ void upd_value()
         upd_tempC(i);
 
         //temperature compensation formula: fFinalResult(25^C) = fFinalResult(current)/(1.0+0.02*(fTP-25.0)); 
-        float compensationCoefficient = 1.0+0.02*(tempC-25.0);
+        float compensationCoefficient = 1.0+0.02*(tempC[i]-25.0);
         //temperature compensation
         float compensationVoltage=tds_volt[i]/compensationCoefficient;
 
