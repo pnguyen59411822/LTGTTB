@@ -58,9 +58,9 @@ static const uint8_t TDS_PINS[TDS_NUM] = {34, 35};
 static uint16_t samplePoints[TDS_NUM][TDS_NUM_SAMPLE_POINTS];
 static uint8_t  samplePoints_ind[TDS_NUM];
 
-static float tds_volt;
-static float tempC;
-static float tds_value;
+static float tds_volt[TDS_NUM];
+static float tempC[TDS_NUM];
+static float tds_value[TDS_NUM];
 
 
 /* ==================================================
@@ -72,8 +72,8 @@ static float tds_value;
 static float get_medianNum(uint16_t arr[], uint8_t size);
 
 static void upd_samplePoints();
-static void upd_volt();
-static void upd_tempC();
+static void upd_volt(uint8_t index);
+static void upd_tempC(uint8_t index);
 static void upd_value();
 
 
@@ -121,27 +121,27 @@ void upd_samplePoints()
 }
 
 
-void upd_volt()
+void upd_volt(uint8_t index)
 {
-    tds_volt = get_medianNum(samplePoints, TDS_NUM_SAMPLE_POINTS) * (float)TDS_VCC / ESP_RESOLUTION;
+    tds_volt[index] = get_medianNum(samplePoints[index], TDS_NUM_SAMPLE_POINTS) * (float)TDS_VCC / ESP_RESOLUTION;
 }
 
 
-void upd_tempC()
+void upd_tempC(uint8_t index)
 {
     if(!isnan(DHT_get_temp())) 
     {
-        tempC = DHT_get_temp();
+        tempC[index] = DHT_get_temp();
         return;
     }
 
     if(!isnan(BMP280_get_tempC()))
     {
-        tempC = BMP280_get_tempC();
+        tempC[index] = BMP280_get_tempC();
         return;
     }
 
-    tempC = 25;
+    tempC[index] = 25;
 }
 
 
@@ -150,17 +150,20 @@ void upd_value()
     static uint32_t intv = millis();
 
     if(millis() - intv < TDS_TIME_UPD_VALUE) {return;}
-      
-    upd_volt();
-    upd_tempC();
 
-    //temperature compensation formula: fFinalResult(25^C) = fFinalResult(current)/(1.0+0.02*(fTP-25.0)); 
-    float compensationCoefficient = 1.0+0.02*(tempC-25.0);
-    //temperature compensation
-    float compensationVoltage=tds_volt/compensationCoefficient;
+    for(uint8_t i=0; i<TDS_NUM; ++i)
+    {
+        upd_volt(i);
+        upd_tempC(i);
 
-    //convert voltage value to tds value
-    tds_value=(133.42*compensationVoltage*compensationVoltage*compensationVoltage - 255.86*compensationVoltage*compensationVoltage + 857.39*compensationVoltage)*0.5;
+        //temperature compensation formula: fFinalResult(25^C) = fFinalResult(current)/(1.0+0.02*(fTP-25.0)); 
+        float compensationCoefficient = 1.0+0.02*(tempC-25.0);
+        //temperature compensation
+        float compensationVoltage=tds_volt[i]/compensationCoefficient;
+
+        //convert voltage value to tds value
+        tds_value[i]=(133.42*compensationVoltage*compensationVoltage*compensationVoltage - 255.86*compensationVoltage*compensationVoltage + 857.39*compensationVoltage)*0.5;
+    }
 }
 
 
