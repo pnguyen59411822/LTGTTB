@@ -78,19 +78,18 @@ static void connect_default()
     for(uint8_t i=0; i<WIFI_NUM_TRY; ++i)
     {
         uint32_t timePoint = millis();
-        while((millis()-timePoint) % WIFI_TIME_CONNECT*2 < WIFI_TIME_CONNECT){
-            if(WiFi.status() == WL_CONNECTED) {break;}
-        }
-
-        if(WiFi.status() == WL_CONNECTED)
+        while((millis()-timePoint) % WIFI_TIME_CONNECT*2 < WIFI_TIME_CONNECT)
         {
-            LOG_I("[WiFi] Connected");
+            if(WiFi.status() == WL_CONNECTED)
+            {
+                LOG_I("[WiFi] Connected");
 
-            LOG_PRINTF("I (%.3Lf) [WiFi] IP address: ", (long double)millis()/1000);
-            LOG_PRINT(WiFi.localIP());
-            LOG_PRINT(F("\n"));
+                LOG_PRINTF("I (%.3Lf) [WiFi] IP address: ", (long double)millis()/1000);
+                LOG_PRINT(WiFi.localIP());
+                LOG_PRINT(F("\n"));
 
-            return;
+                return;
+            }
         }
     }
 
