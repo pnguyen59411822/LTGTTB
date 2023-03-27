@@ -69,7 +69,7 @@ float get_medianNum(uint16_t arr[], uint8_t size);
 
 void upd_samplePoints();
 void upd_volt();
-void upd_tempC();
+static void upd_tempC();
 void upd_value();
 
 
@@ -94,7 +94,7 @@ float get_medianNum(uint16_t arr[], uint8_t size)
 
     int i, j;
     float bTemp;
-    
+
     for (j = 0; j < size - 1; j++) {
         for (i = 0; i < size - j - 1; i++) 
         {
