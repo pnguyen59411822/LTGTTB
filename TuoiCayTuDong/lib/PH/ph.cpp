@@ -18,7 +18,7 @@
 ** =============================================== */
 
 
-#define ESP_RESOLUTION      4095
+#define ESP_RESOLUTION      4096
 
 #define PH_PIN              35
 #define PH_VCC              5000
