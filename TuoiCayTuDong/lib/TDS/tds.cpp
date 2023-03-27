@@ -79,6 +79,44 @@ void upd_value();
 ** =============================================== */
 
 
+float get_medianNum(uint16_t arr[], uint8_t size)
+{
+    uint16_t bArray[size];
+    uint16_t bTab[size];
+
+    for(uint8_t i=0; i<size; ++i){
+        bArray[i] = arr[i];
+    }
+        
+    for (byte i = 0; i<size; ++i){
+        bTab[i] = bArray[i];
+    }
+
+    int i, j;
+    float bTemp;
+    
+    for (j = 0; j < size - 1; j++) {
+        for (i = 0; i < size - j - 1; i++) 
+        {
+            if (bTab[i] > bTab[i + 1]) {
+                bTemp = bTab[i];
+                bTab[i] = bTab[i + 1];
+                bTab[i + 1] = bTemp;
+            }
+        }
+    }
+
+    if ((size & 1) > 0){
+        bTemp = bTab[(size - 1) / 2];
+    }
+    else {
+        bTemp = (bTab[size / 2] + bTab[size / 2 - 1]) / 2;
+    }
+
+    return bTemp;
+}
+
+
 void upd_samplePoints()
 {
     static uint32_t intv = millis();
