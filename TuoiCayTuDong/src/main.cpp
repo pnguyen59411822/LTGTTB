@@ -11,6 +11,7 @@
 #include "log_service.h"
 #include "I2C_service.h"
 #include "SPI_service.h"
+#include "wifi_service.h"
 #include "DHT_service.h"
 #include "BMP280.h"
 #include "soil_moisture.h"
@@ -29,6 +30,7 @@ void setup()
   Log_init();
   I2C_init();
   I2C_scan();
+  WiFi_init();
   DHT_init();
   BMP280_init();
   SM_init();

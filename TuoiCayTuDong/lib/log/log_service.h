@@ -57,6 +57,12 @@
                             (long double)millis()/1000, ##__VA_ARGS__); \
         } while(0)
 
+    #define LOG_PRINT(fmt) \
+        do \
+        { \
+            LOG_PORT.print(fmt); \
+        } while (0)
+
     #define LOG_PRINTF(fmt, ...) \
         do \
         { \
@@ -66,12 +72,14 @@
     #else
         #define LOG_I(...)      do { (void)0; } while (0)
         #define LOG_E(...)      do { (void)0; } while (0)
+        #define LOG_PRINT (...) do { (void)0; } while (0)
         #define LOG_PRINTF(...) do { (void)0; } while (0)
     #endif
 
 #else
     #define LOG_I(...)      do { (void)0; } while (0)
     #define LOG_E(...)      do { (void)0; } while (0)
+    #define LOG_PRINT (...) do { (void)0; } while (0)
     #define LOG_PRINTF(...) do { (void)0; } while (0)
 #endif
 
