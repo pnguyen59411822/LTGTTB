@@ -6,6 +6,9 @@
 
 #include "tds.h"
 
+#include "DHT_service.h"
+#include "BMP280.h"
+
 
 /* ==================================================
 ** Macro definition
@@ -52,6 +55,7 @@ static uint16_t samplePoints[TDS_NUM_SAMPLE_POINTS];
 static uint8_t  samplePoints_ind = 0;
 
 static float tds_volt  = nan(NULL);
+static float tempC     = nan(NULL);
 static float tds_value = nan(NULL);
 
 
@@ -61,10 +65,11 @@ static float tds_value = nan(NULL);
 ** =============================================== */
 
 
-float get_tempC();
 float get_medianNum(uint16_t arr[], uint8_t size);
 
 void upd_samplePoints();
+void upd_volt();
+void upd_tempC();
 void upd_value();
 
 
@@ -91,16 +96,41 @@ void upd_samplePoints()
 }
 
 
+void upd_volt()
+{
+    tds_volt = get_medianNum(samplePoints, TDS_NUM_SAMPLE_POINTS) * (float)TDS_VCC / ESP_RESOLUTION;
+}
+
+
+void upd_tempC()
+{
+    if(!isnan(DHT_get_temp())) 
+    {
+        tempC = DHT_get_temp();
+        return;
+    }
+
+    if(!isnan(BMP280_get_tempC()))
+    {
+        tempC = BMP280_get_tempC();
+        return;
+    }
+
+    tempC = 25;
+}
+
+
 void upd_value()
 {
     static uint32_t intv = millis();
 
     if(millis() - intv < TDS_TIME_UPD_VALUE) {return;}
       
-    tds_volt = get_medianNum(samplePoints, TDS_NUM_SAMPLE_POINTS) * (float)TDS_VCC / ESP_RESOLUTION;
+    upd_volt();
+    upd_tempC();
 
     //temperature compensation formula: fFinalResult(25^C) = fFinalResult(current)/(1.0+0.02*(fTP-25.0)); 
-    float compensationCoefficient = 1.0+0.02*(get_tempC()-25.0);
+    float compensationCoefficient = 1.0+0.02*(tempC-25.0);
     //temperature compensation
     float compensationVoltage=tds_volt/compensationCoefficient;
 
