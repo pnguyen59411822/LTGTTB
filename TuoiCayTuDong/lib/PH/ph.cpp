@@ -45,7 +45,7 @@
 
 
 /* ==================================================
-** Global variables
+** Static variables
 **
 ** =============================================== */
 
@@ -56,7 +56,7 @@ static float volt, ph_val,tempC = 25;
 
 
 /* ==================================================
-** Global function declaration
+** Static function declaration
 **
 ** =============================================== */
 
@@ -65,7 +65,7 @@ static void upd_tempC();
 
 
 /* ==================================================
-** Global function definition
+** Static function definition
 **
 ** =============================================== */
 

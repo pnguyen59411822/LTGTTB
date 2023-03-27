@@ -39,7 +39,7 @@
 
 
 /* ==================================================
-** Global variables
+** Static variables
 **
 ** =============================================== */
 
@@ -50,7 +50,7 @@ static int raw_max = ESP_RESOLUTION;
 
 
 /* ==================================================
-** Global function declaration
+** Static function declaration
 **
 ** =============================================== */
 
@@ -59,7 +59,7 @@ static int raw_max = ESP_RESOLUTION;
 
 
 /* ==================================================
-** Global function definition
+** Static function definition
 **
 ** =============================================== */
 

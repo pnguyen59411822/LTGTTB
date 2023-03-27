@@ -40,7 +40,7 @@
 
 
 /* ==================================================
-** Global variables
+** Static variables
 **
 ** =============================================== */
 
@@ -57,7 +57,7 @@ static bool flg_inited = false;
 
 
 /* ==================================================
-** Global function declaration
+** Static function declaration
 **
 ** =============================================== */
 
@@ -66,7 +66,7 @@ static bool flg_inited = false;
 
 
 /* ==================================================
-** Global function definition
+** Static function definition
 **
 ** =============================================== */
 

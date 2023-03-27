@@ -47,7 +47,7 @@
 
 
 /* ==================================================
-** Global variables
+** Static variables
 **
 ** =============================================== */
 
@@ -61,7 +61,7 @@ static float tds_value = nan(NULL);
 
 
 /* ==================================================
-** Global function declaration
+** Static function declaration
 **
 ** =============================================== */
 
@@ -75,7 +75,7 @@ void upd_value();
 
 
 /* ==================================================
-** Global function definition
+** Static function definition
 **
 ** =============================================== */
 
