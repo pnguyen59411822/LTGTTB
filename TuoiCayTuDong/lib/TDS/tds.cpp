@@ -14,6 +14,7 @@
 
 
 #define TDS_PIN                 34
+#define TDS_NUM_SAMPLE_POINT    30
 
 
 /* ==================================================
@@ -40,7 +41,8 @@
 ** =============================================== */
 
 
-//
+static uint16_t samplePoints[TDS_NUM_SAMPLE_POINT];
+static uint8_t  samplePoints_ind = 0;
 
 
 /* ==================================================
@@ -77,3 +79,19 @@ void TDS_init()
     LOG_I("[TDS] end initing\n");
 }
 
+
+void TDS_read()
+{
+    static uint32_t intv = millis();
+
+    if(millis() - intv < 40) {return;}
+
+    samplePoints[samplePoints_ind] = analogRead(TDS_PIN);
+    samplePoints_ind += 1;
+
+    if(samplePoints_ind == TDS_NUM_SAMPLE_POINT){ 
+        samplePoints_ind = 0;
+    }
+
+    intv = millis();
+}
