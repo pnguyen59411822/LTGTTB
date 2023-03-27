@@ -96,7 +96,12 @@ void upd_tempC()
 
 void PH_init()
 {
+    LOG_PRINTF("\n");
+    LOG_I("[PH] start initing");
+
     ph.begin();
+
+    LOG_I("[PH] end initing\n");
 }
 
 
