@@ -6,14 +6,6 @@
 
 #include "wifi_service.h"
 
-#ifdef ESP32
-#include "WiFi.h"
-#endif
-
-#ifdef ESP8266
-#include "ESP8266WiFi.h"
-#endif
-
 
 /* ==================================================
 ** Macro definition
@@ -140,7 +132,7 @@ void WiFi_init()
     LOG_I("[WiFi] start initing");
     
     connect_default();
-    
+
     LOG_I("[WiFi] end initing\n");
 }
 
