@@ -51,6 +51,7 @@
 ** =============================================== */
 
 
+static bool ssid_is_valid(const char* ssid);
 static bool pass_is_valid(const char* pass);
 
 
@@ -58,6 +59,12 @@ static bool pass_is_valid(const char* pass);
 ** Static function declaration
 **
 ** =============================================== */
+
+
+static bool ssid_is_valid(const char* ssid)
+{
+    return strlen(ssid)==0 ? false : true;
+}
 
 
 bool pass_is_valid(const char* pass)
@@ -88,6 +95,11 @@ bool pass_is_valid(const char* pass)
 
 void WiFi_init()
 {
+    if(ssid_is_valid(WIFI_DEFAULT_SSID) == false){
+        LOG_E("[WiFi] SSID is empty");
+        return;
+    }
+
     if(pass_is_valid(WIFI_DEFAULT_PASS) == false){
         LOG_E("[WiFi] Password is less than 8 characters");
         return;
