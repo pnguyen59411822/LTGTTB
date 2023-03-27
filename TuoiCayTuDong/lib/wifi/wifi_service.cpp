@@ -88,6 +88,10 @@ bool pass_is_valid(const char* pass)
 
 void WiFi_init()
 {
+    if(pass_is_valid(WIFI_DEFAULT_PASS) == false){
+        LOG_E("[WiFi] Password is less than 8 characters");
+        return;
+    }
 
 }
 
