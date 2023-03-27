@@ -53,7 +53,7 @@
 ** =============================================== */
 
 
-static const uint8_t tds_pin[TDS_NUM] = {34, 35};
+static const uint8_t TDS_PINS[TDS_NUM] = {34, 35};
 
 static uint16_t samplePoints[TDS_NUM][TDS_NUM_SAMPLE_POINTS];
 static uint8_t  samplePoints_ind[TDS_NUM];
@@ -177,8 +177,8 @@ void TDS_init()
 
     for(uint8_t i=0; i<TDS_NUM; ++i)
     {
-        pinMode(TDS_PIN, INPUT);
-
+        pinMode(TDS_PINS[i], INPUT);
+        samplePoints_ind[i] = 0;
     }
 
     LOG_I("[TDS] end initing\n");
