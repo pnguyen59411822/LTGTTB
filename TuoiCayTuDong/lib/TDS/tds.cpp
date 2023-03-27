@@ -19,6 +19,7 @@
 
 #define ESP_RESOLUTION              4096
 
+#define TDS_NUM                     2
 #define TDS_PIN                     34
 #define TDS_VCC                     3.3
 
@@ -52,12 +53,14 @@
 ** =============================================== */
 
 
-static uint16_t samplePoints[TDS_NUM_SAMPLE_POINTS];
-static uint8_t  samplePoints_ind = 0;
+static const uint8_t tds_pin[TDS_NUM] = {34, 35};
 
-static float tds_volt  = nan(NULL);
-static float tempC     = nan(NULL);
-static float tds_value = nan(NULL);
+static uint16_t samplePoints[TDS_NUM_SAMPLE_POINTS];
+static uint8_t  samplePoints_ind;
+
+static float tds_volt;
+static float tempC;
+static float tds_value;
 
 
 /* ==================================================
@@ -169,7 +172,11 @@ void TDS_init()
     LOG_PRINTF("\n");
     LOG_I("[TDS] start initing");
 
-    pinMode(TDS_PIN, INPUT);
+    for(uint8_t i=0; i<TDS_NUM; ++i)
+    {
+        pinMode(TDS_PIN, INPUT);
+
+    }
 
     LOG_I("[TDS] end initing\n");
 }
