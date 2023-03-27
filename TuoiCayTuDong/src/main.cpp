@@ -15,6 +15,7 @@
 #include "BMP280.h"
 #include "soil_moisture.h"
 #include "ph.h"
+#include "tds.h"
 
 
 /* ==================================================
@@ -32,6 +33,7 @@ void setup()
   BMP280_init();
   SM_init();
   PH_init();
+  TDS_init();
 }
 
 
@@ -42,6 +44,7 @@ void loop()
 
   DHT_read();
   PH_upd();
+  TDS_read();
 
   static uint32_t intv = millis();
   if(millis() - intv < 2000) {return;}
@@ -51,6 +54,7 @@ void loop()
   BMP280_print();
   SM_print();
   PH_print();
+  TDS_printf();
 
   LOG_PRINTF("\n");
   intv = millis();

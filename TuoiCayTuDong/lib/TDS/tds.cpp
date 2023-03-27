@@ -137,3 +137,14 @@ float TDS_get_value()
 {
     return tds_value;
 }
+
+
+void TDS_print(bool update)
+{
+    if(update){
+        LOG_U("[TDS] value: %4.2f ppm", tds_value);
+        return;
+    }
+    
+    LOG_I("[TDS] value: %4.2f ppm", tds_value);
+}

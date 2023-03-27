@@ -42,6 +42,8 @@ void TDS_read();
 
 float TDS_get_value();
 
+void TDS_print(bool update=false);
+
 
 /* ==================================================
 ** Extern variables
