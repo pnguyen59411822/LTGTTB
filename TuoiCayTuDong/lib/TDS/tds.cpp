@@ -55,8 +55,8 @@
 
 static const uint8_t tds_pin[TDS_NUM] = {34, 35};
 
-static uint16_t samplePoints[TDS_NUM_SAMPLE_POINTS];
-static uint8_t  samplePoints_ind;
+static uint16_t samplePoints[TDS_NUM][TDS_NUM_SAMPLE_POINTS];
+static uint8_t  samplePoints_ind[TDS_NUM];
 
 static float tds_volt;
 static float tempC;
@@ -107,11 +107,14 @@ void upd_samplePoints()
 
     if(millis() - intv < TDS_TIME_UPD_SAMPLE_POINTS) {return;}
 
-    samplePoints[samplePoints_ind] = analogRead(TDS_PIN);
-    samplePoints_ind += 1;
+    for(uint8_t i=0; i<TDS_NUM; ++i)
+    {
+        samplePoints[i][samplePoints_ind[i]] = analogRead(TDS_PIN);
+        samplePoints_ind[i] += 1;
 
-    if(samplePoints_ind == TDS_NUM_SAMPLE_POINTS){ 
-        samplePoints_ind = 0;
+        if(samplePoints_ind[i] == TDS_NUM_SAMPLE_POINTS){ 
+            samplePoints_ind[i] = 0;
+        }
     }
 
     intv = millis();
