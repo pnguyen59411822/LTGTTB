@@ -105,7 +105,7 @@ void I2C_scan()
 
     if(numDev == 0){
         LOG_E("[I2C] No device found");
-        LOG_PRINTF("\n\n");
+        LOG_PRINTF("\n");
         return;
     }
 
