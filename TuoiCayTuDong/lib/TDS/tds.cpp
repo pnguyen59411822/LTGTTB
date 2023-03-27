@@ -181,7 +181,11 @@ void TDS_init()
     for(uint8_t i=0; i<TDS_NUM; ++i)
     {
         pinMode(TDS_PINS[i], INPUT);
+
         samplePoints_ind[i] = 0;
+        tds_volt[i]         = nan(NULL);
+        tempC[i]            = nan(NULL);
+        tds_value[i]        = nan(NULL);
     }
 
     LOG_I("[TDS] end initing\n");
