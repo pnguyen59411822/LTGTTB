@@ -54,7 +54,7 @@ void loop()
   BMP280_print();
   SM_print();
   PH_print();
-  TDS_printf();
+  TDS_print();
 
   LOG_PRINTF("\n");
   intv = millis();
