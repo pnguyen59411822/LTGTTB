@@ -42,7 +42,7 @@ void TDS_read();
 
 float TDS_get_value(uint8_t index=0);
 
-void TDS_print(bool update=false);
+void TDS_print(int8_t index=-1);
 
 
 /* ==================================================

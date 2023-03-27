@@ -205,12 +205,15 @@ float TDS_get_value(uint8_t index)
 }
 
 
-void TDS_print(bool update)
+void TDS_print(int8_t index)
 {
-    if(update){
-        LOG_U("[TDS] value: %4.2f ppm", tds_value);
+    if(index == -1)
+    {
+        for(uint8_t i=0; i<TDS_NUM; ++i){
+            LOG_I("[TDS][%d] value: %4.2f ppm", i, tds_value[i]);
+        }
         return;
     }
-    
-    LOG_I("[TDS] value: %4.2f ppm", tds_value);
+
+    LOG_I("[TDS][%d] value: %4.2f ppm", index, tds_value[index]);
 }
