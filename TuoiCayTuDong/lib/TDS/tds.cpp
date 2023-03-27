@@ -66,12 +66,12 @@ static float tds_value = nan(NULL);
 ** =============================================== */
 
 
-float get_medianNum(uint16_t arr[], uint8_t size);
+static float get_medianNum(uint16_t arr[], uint8_t size);
 
-void upd_samplePoints();
-void upd_volt();
+static void upd_samplePoints();
+static void upd_volt();
 static void upd_tempC();
-void upd_value();
+static void upd_value();
 
 
 /* ==================================================
