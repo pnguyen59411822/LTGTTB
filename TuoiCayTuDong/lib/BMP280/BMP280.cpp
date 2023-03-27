@@ -93,11 +93,11 @@ void BMP280_init()
     {
         LOG_E("[BMP280] Could not find a valid BMP280");
         
-        LOG_PRINTF("SensorID was: %#x\n", bmp.sensorID());
-        LOG_PRINTF("\t\t ID of 0xFF probably means a bad address, a BMP 180 or BMP 085\n");
-        LOG_PRINTF("\t\t ID of 0x56-0x58 represents a BMP 280,\n");
-        LOG_PRINTF("\t\t ID of 0x60 represents a BME 280.\n");
-        LOG_PRINTF("\t\t ID of 0x61 represents a BME 680.\n");
+        LOG_PRINTF("\t SensorID was: %#x\n", bmp.sensorID());
+        LOG_PRINTF("\t ID of 0xFF probably means a bad address, a BMP 180 or BMP 085\n");
+        LOG_PRINTF("\t ID of 0x56-0x58 represents a BMP 280,\n");
+        LOG_PRINTF("\t ID of 0x60 represents a BME 280.\n");
+        LOG_PRINTF("\t ID of 0x61 represents a BME 680.\n");
     }
 
     if(status) {
