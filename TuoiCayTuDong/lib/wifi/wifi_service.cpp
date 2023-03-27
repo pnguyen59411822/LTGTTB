@@ -77,8 +77,7 @@ static void connect_default()
 
     for(uint8_t i=0; i<WIFI_NUM_TRY; ++i)
     {
-        uint32_t timePoint = millis();
-        while((millis()-timePoint) % WIFI_TIME_CONNECT*2 < WIFI_TIME_CONNECT) {}
+        delay(WIFI_TIME_CONNECT);
 
         if(WiFi.status() == WL_CONNECTED)
         {
