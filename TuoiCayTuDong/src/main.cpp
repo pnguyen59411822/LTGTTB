@@ -43,7 +43,7 @@ void loop()
   BMP280_reinit();
 
   DHT_read();
-  PH_upd();
+  PH_read();
   TDS_read();
 
   static uint32_t intv = millis();

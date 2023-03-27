@@ -42,7 +42,7 @@ void PH_init();
 
 float PH_get_val();
 
-void PH_upd();
+void PH_read();
 
 void PH_print(bool update=false);
 

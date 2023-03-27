@@ -106,7 +106,7 @@ float PH_get_val()
 }
 
 
-void PH_upd()
+void PH_read()
 {
     static uint32_t intv = millis();
 
