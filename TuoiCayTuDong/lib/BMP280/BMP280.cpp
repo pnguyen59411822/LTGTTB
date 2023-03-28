@@ -52,7 +52,10 @@ static Adafruit_BMP280 bmp;
 #endif
 
 // Pressure at Bien Hoa, Vietnam
-static float pressure_seaLevel = 1010.5;
+// static float pressure_seaLevel = 1010.5;
+
+// Default
+static float pressure_seaLevel = 1013.25;
 
 static bool flg_inited = false;
 

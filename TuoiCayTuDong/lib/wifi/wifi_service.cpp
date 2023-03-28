@@ -13,7 +13,7 @@
 ** =============================================== */
 
 
-#define WIFI_DEFAULT_SSID           "My SSID"
+#define WIFI_DEFAULT_SSID           "Lac Hong University 2.4GHz"
 #define WIFI_DEFAULT_PASS           ""
 
 #define WIFI_NUM_TRY                3
@@ -78,7 +78,7 @@ static void connect_default()
     for(uint8_t i=0; i<WIFI_NUM_TRY; ++i)
     {
         uint32_t timePoint = millis();
-        while((millis()-timePoint) % WIFI_TIME_CONNECT*2 < WIFI_TIME_CONNECT)
+        while((millis()-timePoint) % millis() < WIFI_TIME_CONNECT)
         {
             if(WiFi.status() == WL_CONNECTED)
             {
@@ -91,9 +91,10 @@ static void connect_default()
                 return;
             }
         }
+
+        LOG_I("[WiFi] fail to connect %d", i+1);
     }
 
-    LOG_I("[WiFi] fail to connect");
 }
 
 

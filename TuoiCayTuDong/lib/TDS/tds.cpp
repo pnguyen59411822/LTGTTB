@@ -19,7 +19,7 @@
 
 #define ESP_RESOLUTION              4096
 
-#define TDS_NUM                     2
+#define TDS_NUM                     1
 #define TDS_PIN                     34
 #define TDS_VCC                     3.3
 
@@ -53,7 +53,7 @@
 ** =============================================== */
 
 
-static const uint8_t TDS_PINS[TDS_NUM] = {34, 35};
+static const uint8_t TDS_PINS[TDS_NUM] = {34};
 
 static uint16_t samplePoints[TDS_NUM][TDS_NUM_SAMPLE_POINTS];
 static uint8_t  samplePoints_ind[TDS_NUM];

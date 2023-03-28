@@ -45,7 +45,7 @@
 
 
 static int raw_min = 0;
-static int raw_max = ESP_RESOLUTION;
+static int raw_max = ESP_RESOLUTION-1;
 
 
 
